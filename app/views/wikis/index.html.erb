@@ -1,5 +1,12 @@
-<h1>All Wikis</h1>
+<h1>All Wikis</h1><br/>
+
+
+
+
+
+<%if policy(Wiki.new).create? %>
 <%= link_to "New Wiki", new_wiki_path(@wiki), class: 'btn btn-success' %>
+<% end%>
 <% @wikis.each do |wiki| %>
  
 

@@ -36,6 +36,7 @@
    name:     'Member User',
    email:    'migs910@hotmail.com',
    password: 'helloworld',
+   role: 'member'
  )
  member.skip_confirmation!
  member.save!
@@ -46,7 +47,8 @@
    user = User.new(
      name:     Faker::Name.name,
      email:    Faker::Internet.email,
-     password: Faker::Lorem.characters(10)
+     password: "12345678"
+     role: 'member'
    )
    user.skip_confirmation!
    user.save!

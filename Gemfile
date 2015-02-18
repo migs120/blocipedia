@@ -12,6 +12,9 @@ gem 'rails', '4.1.0'
  group :development do
    gem 'sqlite3'
  end
+
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

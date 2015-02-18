@@ -16,6 +16,7 @@ class ApplicationPolicy
 
   def create?
     user.present?
+    #true
   end
 
   def new?
@@ -23,7 +24,9 @@ class ApplicationPolicy
   end
 
   def update?
-    user.present? && (record.user == user || user.admin?)
+    # user.present? && (record.user == user || user.admin?)  #user == user restricts other collaborators
+    user.present?
+    
   end
 
   def edit?
