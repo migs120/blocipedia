@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+   match 'wikis/premium_update' => 'wikis#premium_update', :via => :patch 
+  
 #   get 'wikis/index'
 
 #   get 'wikis/show'
