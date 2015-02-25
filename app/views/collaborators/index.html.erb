@@ -1,0 +1,94 @@
+<h1>Collaborators for Wiki <%= @wiki.title %></h1>
+<%= @wiki.collaborators.inspect%>
+<table>
+  <thead>
+    <tr>
+      <th> User </th>
+      <th> Action </th>
+    </tr>
+   </thead>
+   <tbody>
+     <% @users.each do |user| %>
+       <tr>
+         <td><%= user.name %></td>
+         <td>
+           <% collaborator = @wiki.collaborators.where( user_id: user.id ).first %>
+           <% if collaborator %>
+           <%= link_to "Remove", "collaborators/#{collaborator.id}" , class: "btn btn-default" %>
+           
+           
+
+           
+           
+           <% else %>
+             <%= link_to "Add", wiki_collaborators_path(@wiki, user_id: user.id), method: :post, class: 'btn btn-default' %>
+           <% end %>
+         </td>
+       </tr>
+     <% end %>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+ <br/> <br/> <br/> <% @users.each do |user| %>
+       
+         <%= user.name %><br/>
+          
+          <% collaborator = @wiki.collaborators.where( user_id: user.id ).first %>
+
+
+           <% if collaborator %>
+              <%= link_to "Remove",  wiki_collaborator_path(@wiki, collaborator.id), class: "btn btn-default" %><br/><br/>
+           <% else %>
+             <%= link_to "Add", wiki_collaborators_path(@wiki, user_id: user.id), method: :post, class: 'btn btn-default' %><br/><br/>
+           <% end %>
+         
+      
+     <% end %> 
+
+
+
+
+
+
+<!--                        = link_to "Remove",  wiki_collaborator_path(@wiki, collaborator), class: "btn btn-default" %> -->
+
+
+<!-- %= link_to "Remove",  wiki_collaborator_path(@wiki, collaborator), method: :delete, class: "btn btn-default" %> -->
+
+
+<!-- wiki_collaborators_path( @wiki, Collaborator.find(params[:id]) -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      

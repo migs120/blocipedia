@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
  
   has_many :wikis
   
+  has_many :collaborators
+  #has_many :wikis_that_i_collaborate_on, through: :collaborators, source: :wiki
+  
   def admin?
      role == 'admin'
    end

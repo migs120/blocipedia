@@ -14,6 +14,7 @@ gem 'rails', '4.1.0'
  end
 
 gem 'stripe'
+gem 'redcarpet'
 
 
 gem 'sass-rails', '~> 4.0.3'

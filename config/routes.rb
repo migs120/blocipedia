@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
 #   get 'wikis/edit'
   
-  resources :wikis
+  resources :wikis do
+    resources :collaborators
+  end
 
   
   devise_for :users

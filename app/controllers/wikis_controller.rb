@@ -2,10 +2,12 @@ class WikisController < ApplicationController
   def index
     @wikis = Wiki.all
     authorize @wikis
+   # @collaborators = Collaborator.all
   end
 
   def show
     @wiki = Wiki.find(params[:id])
+   # @collaborator = @wiki.collaborators
   end
 
   def new
