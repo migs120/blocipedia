@@ -8,6 +8,7 @@ class ApplicationPolicy
 
   def index?
     false
+    # user.present? && (record.user == user || user.admin?) 
   end
 
   def show?
@@ -26,7 +27,7 @@ class ApplicationPolicy
   end
 
   def update?
-    # user.present? && (record.user == user || user.admin?)  #user == user restricts other collaborators
+    #user.present? && (record.user == user || user.admin?)  #user == user restricts other collaborators
     user.present?
     
   end

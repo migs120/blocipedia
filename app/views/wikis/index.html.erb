@@ -1,5 +1,5 @@
 <h1>All Wikis</h1><br/>
-
+ 
 <%if current_user %>
   
   <%= current_user.inspect %><br/><br/>
@@ -7,7 +7,7 @@
 
 <% end %>
 
-
+<!-- %= $hay5 %><br/><br/>   -->
 
 
 
@@ -16,17 +16,33 @@
 <% end%>
 <% @wikis.each do |wiki| %>
  
+          <% if current_user%>
 
-   <div class="media">
-     <div class="media-body">
-       <h4 class="media-heading">
-         
-         <%= link_to wiki.title, wiki_path(wiki.id) %>
-                     <!-- link  ,   wiki#show -->
-       </h4>
-     </div>
-   </div>
+                  <% if wiki.private == false || wiki.private == nil || wiki.user_id == current_user.id || wiki.collaborators.where( user_id: current_user.id ).first %>
 
+                             <div class="media">
+                               <div class="media-body">
+                                 <h4 class="media-heading">
+
+                                   <%= link_to wiki.title, wiki_path(wiki.id) %>
+                                               <!-- link  ,   wiki#show -->
+                                 </h4>
+                               </div>
+                             </div>
+                    <% end %>
+          <% elsif wiki.private == false || wiki.private == nil %>
+                               <div class="media">
+                               <div class="media-body">
+                                 <h4 class="media-heading">
+
+                                   <%= link_to wiki.title, wiki_path(wiki.id) %>
+                                               <!-- link  ,   wiki#show -->
+                                 </h4>
+                               </div>
+                             </div>
+
+          <% end %>
 
 <% end %>
+
 

@@ -1,3 +1,5 @@
+
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -25,7 +27,8 @@ class User < ActiveRecord::Base
     role == 'premium'
   end
   
-  
+ 
   
   
 end
+

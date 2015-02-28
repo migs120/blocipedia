@@ -1,11 +1,11 @@
 <h1><%= @wiki.title %></h1>
 
 <%= @collaborator.inspect%>
-
- <% if policy(@wiki).edit? %>
-  <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
- <% end %>
-
+<%if current_user%>
+    <% if  current_user.id == @wiki.user_id || current_user.role == "admin" || @wiki.collaborators.where( user_id: current_user.id ).first == @wiki.collaborators.where( wiki_id: @wiki.id).first %>                                                                           
+          <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
+     <% end %>
+<%end%>
 
 
 <p><%= @wiki.body %></p>
@@ -13,8 +13,8 @@
 
 <%if current_user %>
     <% if current_user.id == @wiki.user_id || current_user.role == "admin" %>
-<%= link_to "Collaborators", wiki_collaborators_path(@wiki), class: 'btn btn-primary' %>
-<%= link_to "Delete wiki", @wiki, method: :delete , class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this wiki?' } %> 
+        <%= link_to "Collaborators", wiki_collaborators_path(@wiki), class: 'btn btn-primary' %>
+        <%= link_to "Delete wiki", @wiki, method: :delete , class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this wiki?' } %> 
     <% end %>
 <% end %>
 
