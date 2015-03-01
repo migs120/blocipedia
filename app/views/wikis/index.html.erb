@@ -1,15 +1,4 @@
 <h1>All Wikis</h1><br/>
- 
-<%if current_user %>
-  
-  <%= current_user.inspect %><br/><br/>
-  <%= current_user.id %><br/><br/>
-
-<% end %>
-
-<!-- %= $hay5 %><br/><br/>   -->
-
-
 
 <%if policy(Wiki.new).create? %>
 <%= link_to "New Wiki", new_wiki_path(@wiki), class: 'btn btn-success' %>
@@ -18,31 +7,44 @@
  
           <% if current_user%>
 
-                  <% if wiki.private == false || wiki.private == nil || wiki.user_id == current_user.id || wiki.collaborators.where( user_id: current_user.id ).first %>
+                                          <% if  current_user.role == 'premium'|| current_user.role == 'admin' %>
 
-                             <div class="media">
-                               <div class="media-body">
-                                 <h4 class="media-heading">
+                                                     <div class="media">
+                                                       <div class="media-body">
+                                                         <h4 class="media-heading">
 
-                                   <%= link_to wiki.title, wiki_path(wiki.id) %>
-                                               <!-- link  ,   wiki#show -->
-                                 </h4>
-                               </div>
-                             </div>
-                    <% end %>
-          <% elsif wiki.private == false || wiki.private == nil %>
-                               <div class="media">
-                               <div class="media-body">
-                                 <h4 class="media-heading">
+                                                           <%= link_to "#{wiki.title}  #{ wiki.private ? "-Private" : ''} ", wiki_path(wiki.id) %>
+                                                                       <!-- link  ,   wiki#show -->
+                                                         </h4>
+                                                       </div>
+                                                     </div>
 
-                                   <%= link_to wiki.title, wiki_path(wiki.id) %>
-                                               <!-- link  ,   wiki#show -->
-                                 </h4>
-                               </div>
-                             </div>
+                                            <% elsif current_user.role == "member" ||  current_user.role == nil && wiki.private == false || wiki.private == nil %>
+                                                       <div class="media">
+                                                       <div class="media-body">
+                                                         <h4 class="media-heading">
+                                                           <%unless wiki.private == true %>
+                                                                 <%= link_to wiki.title, wiki_path(wiki.id) %>
+                                                                                 <!-- link  ,   wiki#show -->
+                                                           <%end%>
+                                                         </h4>
+                                                       </div>
+                                                     </div>
+                                            <%end%>
+
+           <%elsif wiki.private == "false" || wiki.private == nil %>
+                       <div class="media">
+                         <div class="media-body">
+                          <h4 class="media-heading">
+
+                            <%= link_to wiki.title, wiki_path(wiki.id) %>
+                                       <!-- link  ,   wiki#show -->
+                         </h4>
+                        </div>
+                      </div>
 
           <% end %>
 
 <% end %>
 
-
+<!-- || wiki.collaborators.where( user_id: current_user.id ).first  || wiki.private == nil || wiki.private == false -->

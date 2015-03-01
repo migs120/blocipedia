@@ -32,9 +32,10 @@
        </div>
      <% end %>
    </div>
-   <%= @wiki.inspect %><br/><br/>
+   <br/><br/>
    
- 
-
+   <% if current_user.role == 'premium' || current_user.role == 'admin'%>
+ <%= render "collaborators/collaborators" %><br/><br/>
+   <% end %>
 
 

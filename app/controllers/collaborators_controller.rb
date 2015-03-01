@@ -15,6 +15,7 @@ class CollaboratorsController < ApplicationController
   def show
            @wiki = Wiki.find(params[:wiki_id])
            #@collab = @wiki.collaborators.find(params[:id])
+        
            #@collab = @wiki, Collaborator.find(params[:id])
            #@a = "#{Collaborator.find(params[:id]).id.methods}------- #{Collaborator.find(params[:id]).destroy}  "
              if @wiki.collaborators.find(params[:id]).destroy

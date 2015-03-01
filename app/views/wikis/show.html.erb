@@ -1,8 +1,16 @@
 <h1><%= @wiki.title %></h1>
+<!--     @wiki = Wiki.find(params[:id])
+         @collaborator = @wiki.collaborators -->
 
-<%= @collaborator.inspect%>
+<%# @collaborator.inspect%>
+<%# @collaborator.where(user_id: current_user.id).inspect %>
+<%# @collaborator.where(user_id: current_user.id).inspect.methods%>
+<%# @collaborator.where(user_id: current_user.id).methods%>
+<%# @collaborator.where(user_id: current_user.id).hash%>
+<% collab = @collaborator.where(user_id: current_user.id).pluck.to_a[0].to_a[1] %>
+
 <%if current_user%>
-    <% if  current_user.id == @wiki.user_id || current_user.role == "admin" || @wiki.collaborators.where( user_id: current_user.id ).first == @wiki.collaborators.where( wiki_id: @wiki.id).first %>                                                                           
+<% if  current_user.id == @wiki.user_id || current_user.role == "admin" || collab == current_user.id %>                                                                           
           <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
      <% end %>
 <%end%>
@@ -13,12 +21,11 @@
 
 <%if current_user %>
     <% if current_user.id == @wiki.user_id || current_user.role == "admin" %>
-        <%= link_to "Collaborators", wiki_collaborators_path(@wiki), class: 'btn btn-primary' %>
-        <%= link_to "Delete wiki", @wiki, method: :delete , class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this wiki?' } %> 
+            <%= link_to "Delete wiki", @wiki, method: :delete , class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this wiki?' } %> 
     <% end %>
 <% end %>
 
 
 
-
-
+<!--  %= link_to "Collaborators", wiki_collaborators_path(@wiki), class: 'btn btn-primary' %> -->
+<!-- || @wiki.collaborators.where( user_id: current_user.id ).first === @wiki.collaborators.where( wiki_id: @wiki.id).first  -->

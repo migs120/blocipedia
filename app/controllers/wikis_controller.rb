@@ -7,7 +7,7 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
-   # @collaborator = @wiki.collaborators
+    @collaborator = @wiki.collaborators
   end
 
   def new
@@ -33,6 +33,8 @@ class WikisController < ApplicationController
   def edit
     @wiki = Wiki.find(params[:id])
     authorize @wiki
+    @users = User.all
+   @collab = @wiki.collaborators
   end
   
    def update
