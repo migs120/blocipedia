@@ -15,7 +15,7 @@
  admin = User.new(
    name:     'Admin User',
    email:    'admin@example.com',
-   password: 'helloworld',
+   password: '12345678',
    role:     'admin'
  )
  admin.skip_confirmation!
@@ -25,8 +25,8 @@
  moderator = User.new(
    name:     'Moderator User',
    email:    'moderator@example.com', 
-   password: 'helloworld',
-   role:     'moderator'
+   password: '12345678',
+   role:     'member'
  )
  moderator.skip_confirmation!
  moderator.save!
@@ -35,7 +35,7 @@
  member = User.new(
    name:     'Member User',
    email:    'migs910@hotmail.com',
-   password: 'helloworld',
+   password: '12345678',
    role:      'member'
  )
  member.skip_confirmation!

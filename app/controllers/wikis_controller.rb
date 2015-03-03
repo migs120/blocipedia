@@ -1,6 +1,12 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.all
+#     if current_user
+       @wikis = Wiki.all
+#     else 
+#       #@wiki = Wiki.where( public: true )
+#       @wiki = Wiki.public_only
+#     end
+#    @wiki = Wiki.visible_for (current_user)
     authorize @wikis
    # @collaborators = Collaborator.all
   end

@@ -1,13 +1,14 @@
 <h1>All Wikis</h1><br/>
 
+
 <%if policy(Wiki.new).create? %>
 <%= link_to "New Wiki", new_wiki_path(@wiki), class: 'btn btn-success' %>
 <% end%>
 <% @wikis.each do |wiki| %>
- 
-          <% if current_user%>
 
-                                          <% if  current_user.role == 'premium'|| current_user.role == 'admin' %>
+          <% if current_user%>
+                                             <% collab = wiki.collaborators.where(user_id: current_user.id).pluck.to_a[0].to_a[1] %>
+                                          <% if  current_user.role == 'premium'|| current_user.role == 'admin' || collab == current_user.id %>
 
                                                      <div class="media">
                                                        <div class="media-body">
@@ -19,20 +20,24 @@
                                                        </div>
                                                      </div>
 
-                                            <% elsif current_user.role == "member" ||  current_user.role == nil && wiki.private == false || wiki.private == nil %>
+                                            <% elsif current_user.role == "member"   %>
                                                        <div class="media">
                                                        <div class="media-body">
                                                          <h4 class="media-heading">
-                                                           <%unless wiki.private == true %>
-                                                                 <%= link_to wiki.title, wiki_path(wiki.id) %>
+                                                           <% # unless wiki.private == true %>
+                                                              <%if wiki.private == false%>
+                                                                     <%= link_to wiki.title, wiki_path(wiki.id) %>
+                                                              <%elsif wiki.private %>
+                                                                       <font color="grey"><%="#{wiki.title}--Private" %></font>
+                                                               <%end%>
                                                                                  <!-- link  ,   wiki#show -->
-                                                           <%end%>
+                                                           <% # end%>
                                                          </h4>
                                                        </div>
                                                      </div>
                                             <%end%>
 
-           <%elsif wiki.private == "false" || wiki.private == nil %>
+           <%elsif wiki.private == false  %>
                        <div class="media">
                          <div class="media-body">
                           <h4 class="media-heading">

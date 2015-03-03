@@ -1,3 +1,5 @@
+<%if @wiki.user_id == current_user.id || current_user.role =='admin' %>
+
 <h1>Collaborators for Wiki <%= @wiki.title %></h1>
 <!-- %= @wiki.collaborators.inspect%> -->
 <table>
@@ -12,14 +14,18 @@
        <tr>
          <td><%= user.name %></td>
          <td>
-           <% collaborator = @wiki.collaborators.where( user_id: user.id ).first %>
-           <% if collaborator %>
-           <%= link_to "Remove", "collaborators/#{collaborator.id}" , class: "btn btn-default" %>                                         
-           <% else %>
-             <%= link_to "Add", wiki_collaborators_path(@wiki, user_id: user.id), method: :post, class: 'btn btn-default' %>
-           <% end %>
+           
+                     <% collaborator = @wiki.collaborators.where( user_id: user.id ).first %>
+                     <% if collaborator %>
+                     <%= link_to "Remove", "collaborators/#{collaborator.id}" , class: "btn btn-default" %>                                         
+                     <% else %>
+                       <%= link_to "Add", wiki_collaborators_path(@wiki, user_id: user.id), method: :post, class: 'btn btn-default' %>
+                     <% end %>
+           
          </td>
        </tr>
      <% end %>
   </tbody>
 </table>
+
+<%end%>

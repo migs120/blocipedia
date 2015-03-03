@@ -15,6 +15,7 @@ gem 'rails', '4.1.0'
 
 gem 'stripe'
 gem 'redcarpet'
+gem 'will_paginate', '~> 3.0.5'
 
 
 gem 'sass-rails', '~> 4.0.3'
