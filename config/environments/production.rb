@@ -84,7 +84,7 @@ Rails.application.configure do
  
   
    config.active_record.dump_schema_after_migration = false
-  config.action_mailer.default_url_options = { host: 'blocipediamg.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'https://blocipediamg.herokuapp.com' }
   
   
 end
