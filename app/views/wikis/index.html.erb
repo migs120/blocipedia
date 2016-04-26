@@ -24,8 +24,8 @@
                                                        <div class="media">
                                                        <div class="media-body">
                                                          <h4 class="media-heading">
-                                                           <% # unless wiki.private == true %>
-                                                              <%if wiki.private == false%>
+                                                           <%#  unless wiki.private == true %>
+                                                              <%if wiki.private == nil %>
                                                                      <%= link_to wiki.title, wiki_path(wiki.id) %>
                                                               <%elsif wiki.private %>
                                                                        <font color="grey"><%="#{wiki.title}--Private" %></font>
