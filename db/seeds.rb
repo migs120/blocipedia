@@ -34,7 +34,7 @@
  # Create a member
  member = User.new(
    name:     'Member User',
-   email:    'migs910@hotmail.com',
+   email:    'migs912@hotmail.com',
    password: '12345678',
    role:      'member'
  )
